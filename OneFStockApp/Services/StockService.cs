@@ -1,9 +1,8 @@
 ﻿using Entities;
 using OneFStockApp.Entities;
-using ServiceContracts;
+using OneFStockApp.ServiceContracts;
 using ServiceContracts.DTO;
 using Services.Helpers;
-using OneFStockApp.ServiceContracts;
 
 namespace OneFStockApp.Services
 {
@@ -19,8 +18,49 @@ namespace OneFStockApp.Services
         /// </summary>
         public StockService()
         {
-            _buyOrders = new List<BuyOrder>();
-            _sellOrders = new List<SellOrder>();
+            _buyOrders = new List<BuyOrder>() {
+                new BuyOrder
+                {
+                    BuyOrderID = Guid.NewGuid(),
+                    StockSymbol = "AAPL",
+                    StockName = "Apple Inc.",
+                    DateAndTimeOfOrder = DateTime.Parse("2023-05-01"),
+                    Quantity = 5000,
+                    Price = 150.50
+                },
+                new BuyOrder
+                {
+                    BuyOrderID = Guid.NewGuid(),
+                    StockSymbol = "TSLA",
+                    StockName = "Tesla, Inc.",
+                    DateAndTimeOfOrder = DateTime.Parse("2023-06-15"),
+                    Quantity = 10000,
+                    Price = 700.75
+                }
+            };
+
+            _sellOrders = new List<SellOrder>()
+            {
+                new SellOrder
+                {
+                    SellOrderID = Guid.NewGuid(),
+                    StockSymbol = "GOOGL",
+                    StockName = "Alphabet Inc.",
+                    DateAndTimeOfOrder = DateTime.Parse("2023-09-20"),
+                    Quantity = 3000,
+                    Price = 1250.00
+                },
+                new SellOrder
+                {
+                    SellOrderID = Guid.NewGuid(),
+                    StockSymbol = "AMZN",
+                    StockName = "Amazon.com, Inc.",
+                    DateAndTimeOfOrder = DateTime.Parse("2023-11-10"),
+                    Quantity = 2000,
+                    Price = 2000.50
+                }
+
+            };
         }
 
 

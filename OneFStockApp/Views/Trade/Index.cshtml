@@ -28,6 +28,29 @@
     <input type="hidden" name="StockSymbol" id="StockSymbol" value="@Model.StockSymbol" />
     <input type="hidden" id="FinnhubToken" value="@ViewBag.FinnhubToken" />
 
+
+
+@*     <!-- Hidden form to send existing model data -->
+    <form method="post" action="/BuyOrder/Create">
+        <!-- Hidden Stock Symbol -->
+        <input type="hidden" name="StockSymbol" value="@Model.StockSymbol" />
+
+        <!-- Hidden Stock Name -->
+        <input type="hidden" name="StockName" value="@Model.StockName" />
+
+        <!-- Hidden Date and Time of Order -->
+        <input type="hidden" name="DateAndTimeOfOrder" value="@Model.DateAndTimeOfOrder.ToString("yyyy-MM-ddTHH:mm")" />
+
+        <!-- Hidden Quantity -->
+        <input type="hidden" name="Quantity" value="@Model.Quantity" />
+
+        <!-- Hidden Price -->
+        <input type="hidden" name="Price" value="@Model.Price" />
+
+        <!-- Submit Button -->
+        <button type="submit">Place Order</button>
+    </form> *@
+
 </form>
 
 

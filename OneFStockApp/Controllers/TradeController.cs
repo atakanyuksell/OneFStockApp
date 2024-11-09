@@ -6,6 +6,8 @@ using static OneFStockApp.TradingOptions;
 using OneFStockApp.Models;
 using OneFStockApp.Services;
 using OneFStockApp.ServiceContracts;
+using ServiceContracts.DTO;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 
 namespace OneFStockApp.Controllers
@@ -66,6 +68,68 @@ namespace OneFStockApp.Controllers
 
             return View(stockTrade);
         }
+
+
+        [Route("/Orders")]
+        public IActionResult Orders()
+        {
+            // Create a Orders model.
+            
+
+            // Get all the buy orders.
+            List <BuyOrderResponse> buyOrderResponses =_stocksService.GetBuyOrders();
+
+            //Get all the sell orders.
+            List <SellOrderResponse> sellOrderResponses =_stocksService.GetSellOrders();
+
+            //Declare the orders data.
+            Orders orders = new Orders() { BuyOrders  = buyOrderResponses, SellOrders = sellOrderResponses };
+
+            //We passed orders data as strongly typed data.
+            return View(orders);
+
+        }
+/*
+        [Route("[action]")]
+        [HttpPost]
+        public IActionResult BuyOrder(BuyOrderRequest request)
+        {
+            //TODO
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
+                return View();
+
+            }
+            //Create a buy order.
+            BuyOrderResponse response = _stocksService.CreateBuyOrder(request);
+
+
+            return RedirectToAction("Index");
+
+        }
+
+
+        [Route("[action]")]
+        [HttpPost]
+        public IActionResult SellOrder(SellOrderRequest request)
+        {
+
+            //TODO
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
+                return View();
+
+            }
+
+            //Create a sell order.
+            SellOrderResponse response = _stocksService.CreateSellOrder(request);
+
+            return RedirectToAction("Index");
+        }
+*/
+
     }
 }
 

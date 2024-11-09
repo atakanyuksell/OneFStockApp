@@ -1,0 +1,51 @@
+﻿@model Orders
+
+@{
+    ViewBag.Title = "Orders";
+    ViewBag.CurrentUrl = "~/Trade/Orders";
+}
+
+<form method="post">
+    <div class="box trading-panel">
+
+        <div class="flex trading-panel-flex">
+            <div id="stock-price-panel">
+
+                <div class="stock">
+                    <h3>Buy Orders</h3>
+                    @{
+                        foreach (BuyOrderResponse item in Model.BuyOrders)
+                        {
+                            <p class="stock-title">Name: @item.StockName</p>
+                            <p class="stock-title">Price: @item.Price</p>
+                            <p class="stock-title">Trade Amount : @item.TradeAmount</p>
+                            <p class="stock-title">ID: @item.BuyOrderID</p>
+                            <p class="stock-title">Date: @item.DateAndTimeOfOrder</p>
+                            <p class="stock-title">Quantity: @item.Quantity</p>
+                            
+                        }
+                    }
+                    <h3>Sell Orders</h3>
+                    @{
+                        foreach (SellOrderResponse item in Model.SellOrders)
+                        {
+                            <p class="stock-title">Name: @item.StockName</p>
+                            <p class="stock-title">Price: @item.Price</p>
+                            <p class="stock-title">Trade Amount : @item.TradeAmount</p>
+                            <p class="stock-title">ID: @item.SellOrderID</p>
+                            <p class="stock-title">Date: @item.DateAndTimeOfOrder</p>
+                            <p class="stock-title">Quantity: @item.Quantity</p>
+
+                        }
+                    }
+
+                </div>
+
+                <div class="date"></div>
+            </div>
+
+
+        </div>
+    </div>
+
+</form>
