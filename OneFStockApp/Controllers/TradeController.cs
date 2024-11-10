@@ -8,6 +8,7 @@ using OneFStockApp.Services;
 using OneFStockApp.ServiceContracts;
 using ServiceContracts.DTO;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.Diagnostics;
 
 
 namespace OneFStockApp.Controllers
@@ -89,22 +90,30 @@ namespace OneFStockApp.Controllers
             return View(orders);
 
         }
-/*
+ 
         [Route("[action]")]
         [HttpPost]
         public IActionResult BuyOrder(BuyOrderRequest request)
         {
-            //TODO
-            if (!ModelState.IsValid)
+            //Adjust all the values related with stockSymbol.
+            Dictionary <string,object>?  CompDetailsDictionary = _finnhubService.GetCompanyProfile(request.StockSymbol);
+            Dictionary <string, object>? stockQuoteDictionary = _finnhubService.GetStockPriceQuote(request.StockSymbol);
+
+            
+
+            if (CompDetailsDictionary != null && stockQuoteDictionary != null && CompDetailsDictionary["name"] != null)
             {
-                ViewBag.Errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
-                return View();
+
+                request.StockName = Convert.ToString(CompDetailsDictionary["name"]) ?? string.Empty;
+                request.DateAndTimeOfOrder = DateTime.Now;
+                request.Price = Convert.ToDouble(stockQuoteDictionary["c"].ToString());
 
             }
             //Create a buy order.
             BuyOrderResponse response = _stocksService.CreateBuyOrder(request);
 
 
+            //BuyOrderResponse response = _stocksService.CreateBuyOrder();
             return RedirectToAction("Index");
 
         }
@@ -115,20 +124,28 @@ namespace OneFStockApp.Controllers
         public IActionResult SellOrder(SellOrderRequest request)
         {
 
-            //TODO
-            if (!ModelState.IsValid)
+            //Adjust all the values related with stockSymbol.
+            Dictionary<string, object>? CompDetailsDictionary = _finnhubService.GetCompanyProfile(request.StockSymbol);
+            Dictionary<string, object>? stockQuoteDictionary = _finnhubService.GetStockPriceQuote(request.StockSymbol);
+
+
+
+            if (CompDetailsDictionary != null && stockQuoteDictionary != null && CompDetailsDictionary["name"] != null)
             {
-                ViewBag.Errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
-                return View();
+
+                request.StockName = Convert.ToString(CompDetailsDictionary["name"]) ?? string.Empty;
+                request.DateAndTimeOfOrder = DateTime.Now;
+                request.Price = Convert.ToDouble(stockQuoteDictionary["c"].ToString());
 
             }
-
-            //Create a sell order.
+            //Create a buy order.
             SellOrderResponse response = _stocksService.CreateSellOrder(request);
 
+
+            //BuyOrderResponse response = _stocksService.CreateBuyOrder();
             return RedirectToAction("Index");
         }
-*/
+
 
     }
 }
