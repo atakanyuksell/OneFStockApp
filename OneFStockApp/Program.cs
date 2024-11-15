@@ -2,6 +2,8 @@ using OneFStockApp;
 using Services;
 using OneFStockApp.Services;
 using OneFStockApp.ServiceContracts;
+using Microsoft.EntityFrameworkCore;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +13,8 @@ builder.Services.Configure<TradingOptions>(builder.Configuration.GetSection("Tra
 builder.Services.AddSingleton<IStockService, StockService>();
 builder.Services.AddSingleton<IFinnhubService, FinnhubService>();
 builder.Services.AddHttpClient();
+
+builder.Services.AddDbContext();
 
 var app = builder.Build();
 
