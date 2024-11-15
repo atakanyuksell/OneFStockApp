@@ -39,7 +39,7 @@ namespace ServiceContracts.DTO
         /// <summary>
         /// The price of each stock (share)
         /// </summary>
-        [Range(1, 1000000, ErrorMessage = "The maximum price of stock is 1000000. Minimum is 1.")]
+        [Range(1, 10000000000, ErrorMessage = "The maximum price of stock is 1000000. Minimum is 1.")]
         public double Price { get; set; }
 
 

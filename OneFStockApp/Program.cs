@@ -14,7 +14,6 @@ builder.Services.AddSingleton<IStockService, StockService>();
 builder.Services.AddSingleton<IFinnhubService, FinnhubService>();
 builder.Services.AddHttpClient();
 
-builder.Services.AddDbContext();
 
 var app = builder.Build();
 
