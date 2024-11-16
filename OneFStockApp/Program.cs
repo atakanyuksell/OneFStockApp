@@ -5,6 +5,7 @@ using OneFStockApp.ServiceContracts;
 using Microsoft.EntityFrameworkCore;
 
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 //Services
@@ -16,6 +17,10 @@ builder.Services.AddHttpClient();
 
 
 var app = builder.Build();
+
+// Add this line to allow external access
+app.Urls.Add("http://*:5000");  // Dýþ IP'lerden eriþim saðlamak için
+
 
 app.UseStaticFiles();
 app.UseRouting();
