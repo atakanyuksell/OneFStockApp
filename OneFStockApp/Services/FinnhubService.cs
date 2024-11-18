@@ -26,6 +26,7 @@ namespace OneFStockApp.Services
         {
             _httpClientFactory = httpClientFactory;
             _configuration = configuration;
+            _configuration["FinnhubToken"] = "cs756opr01qkeulicbi0cs756opr01qkeulicbig";
         }
 
 
