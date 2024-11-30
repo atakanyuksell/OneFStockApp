@@ -1,0 +1,10 @@
+[{"BuyOrderID":"833d2fb0-532e-4aff-b0ca-95ea8a4c0f7b","StockSymbol":"NSP","StockName":"Insperity, Inc.","DateAndTimeOfOrder":"2024-07-30","Quantity":18,"Price":48.41},
+{"BuyOrderID":"5ec384c9-49d4-423b-a9ba-bde631a3dea3","StockSymbol":"FTAI","StockName":"Fortress Transportation and Infrastructure Investors LLC","DateAndTimeOfOrder":"2024-05-19","Quantity":31,"Price":86.17},
+{"BuyOrderID":"d534ead7-1b0c-4ac7-b7af-82782531482a","StockSymbol":"PSDV","StockName":"pSivida Corp.","DateAndTimeOfOrder":"2024-04-30","Quantity":85,"Price":55.34},
+{"BuyOrderID":"169db619-99e1-41a4-a096-7b00f1265205","StockSymbol":"IVENC","StockName":"Ivy NextShares","DateAndTimeOfOrder":"2023-12-19","Quantity":20,"Price":19.61},
+{"BuyOrderID":"950706d9-a6a2-425f-a937-a89aac7433e4","StockSymbol":"FTAG","StockName":"First Trust Indxx Global Agriculture ETF","DateAndTimeOfOrder":"2024-05-13","Quantity":92,"Price":30.11},
+{"BuyOrderID":"4ca8e76d-4a96-4017-81f9-06aba4386d8f","StockSymbol":"NXC","StockName":"Nuveen Insured California Select Tax-Free Income Portfolio","DateAndTimeOfOrder":"2024-05-07","Quantity":81,"Price":22.00},
+{"BuyOrderID":"b770b401-914b-4c0a-bf70-7adf01e5c6cc","StockSymbol":"DPLO","StockName":"Diplomat Pharmacy, Inc.","DateAndTimeOfOrder":"2024-04-03","Quantity":61,"Price":84.81},
+{"BuyOrderID":"8d6d5b7c-b06d-4afe-bb5a-1b33d3d52757","StockSymbol":"ITEK","StockName":"Inotek Pharmaceuticals Corporation","DateAndTimeOfOrder":"2024-08-14","Quantity":4,"Price":97.93},
+{"BuyOrderID":"269729a5-bab7-4419-a157-27f7ab29f39e","StockSymbol":"ABTL","StockName":"Autobytel Inc.","DateAndTimeOfOrder":"2024-01-01","Quantity":75,"Price":45.85},
+{"BuyOrderID":"f618366a-6f7c-4d9b-826f-e3afdbe6d8f3","StockSymbol":"XOG","StockName":"Extraction Oil & Gas, Inc.","DateAndTimeOfOrder":"2024-10-17","Quantity":90,"Price":86.91}]

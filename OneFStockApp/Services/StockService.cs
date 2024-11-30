@@ -1,43 +1,27 @@
-﻿using Entities;
+﻿using System.Linq;
+using Entities;
+using Microsoft.AspNetCore.Mvc;
 using OneFStockApp.Entities;
 using OneFStockApp.ServiceContracts;
 using ServiceContracts.DTO;
 using Services.Helpers;
 
+
 namespace OneFStockApp.Services
 {
     public class StockService : IStockService
     {
-
-        private readonly List<BuyOrder> _buyOrders;
+        //_buyOrders
+        private readonly OrderDbContext _dbBuy;
 
         private readonly List<SellOrder> _sellOrders;
 
         /// <summary>
         /// StockService başlatıldığında çalışacak constructor.Bu consturctor sayesinde boş listelerimiz oluşturulur.
         /// </summary>
-        public StockService()
+        public StockService(OrderDbContext buyOrderDbContext)
         {
-            _buyOrders = new List<BuyOrder>() {
-                new BuyOrder
-                {
-                    BuyOrderID = Guid.NewGuid(),
-                    StockSymbol = "AAPL",
-                    StockName = "Apple Inc.",
-                    DateAndTimeOfOrder = DateTime.Parse("2023-05-01"),
-                    Quantity = 5000,
-                    Price = 150.50
-                },
-                new BuyOrder
-                {
-                    BuyOrderID = Guid.NewGuid(),
-                    StockSymbol = "TSLA",
-                    StockName = "Tesla, Inc.",
-                    DateAndTimeOfOrder = DateTime.Parse("2023-06-15"),
-                    Quantity = 10000,
-                    Price = 700.75
-                }
-            };
+            _dbBuy = buyOrderDbContext;
 
             _sellOrders = new List<SellOrder>()
             {
@@ -83,7 +67,9 @@ namespace OneFStockApp.Services
             buyOrder.BuyOrderID = Guid.NewGuid();
 
             // buyOrder'ı _buyOrders listesine ekliyoruz.
-            _buyOrders.Add(buyOrder);
+            _dbBuy.BuyOrders.Add(buyOrder);
+            _dbBuy.SaveChanges();
+            
 
             return buyOrder.ToBuyOrderResponse();
 
@@ -108,15 +94,25 @@ namespace OneFStockApp.Services
 
         }
 
+   
         public List<BuyOrderResponse> GetBuyOrders()
         {
-            return _buyOrders.OrderByDescending(temp => temp.DateAndTimeOfOrder).Select(temp => temp.ToBuyOrderResponse()).ToList();
+
+            return _dbBuy.BuyOrders
+             .AsEnumerable() // IQueryable'dan IEnumerable'a geçiş
+             .Select(buy_order => buy_order.ToBuyOrderResponse())
+             .ToList();
+
+            // _buyOrders.OrderByDescending(temp => temp.DateAndTimeOfOrder).Select(temp => temp.ToBuyOrderResponse()).ToList();
         }
 
         public List<SellOrderResponse> GetSellOrders()
         {
+            
+
             return _sellOrders.OrderByDescending(temp => temp.DateAndTimeOfOrder).Select(temp => temp.ToSellOrderResponse()).ToList();
         }
+
     }
 
 }

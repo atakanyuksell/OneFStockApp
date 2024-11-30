@@ -4,13 +4,16 @@ namespace OneFStockApp.Entities
 {
     public class SellOrder
     {
+        [Key]
         public Guid SellOrderID { get; set; }
 
         [Required]
-        public string StockSymbol { get; set; }
+        [StringLength(40)]
+        public string? StockSymbol { get; set; }
 
         [Required]
-        public string StockName { get; set; }
+        [StringLength(40)]
+        public string? StockName { get; set; }
 
         public DateTime DateAndTimeOfOrder { get; set; }
 
